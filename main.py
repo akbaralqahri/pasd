@@ -8,9 +8,15 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN
 import plotly.express as px
+import os
+
+directory = os.path.dirname(__file__)
+filename = os.path.join(directory, 'Telco-Customer-Churn.csv')
+filename2 = os.path.join(directory, 'Telco-Customer-Churn-dataset-cleaned.csv')
+
 
 # Load the cleaned dataset
-df = pd.read_csv('Telco-Customer-Churn-dataset-cleaned.csv')
+df = pd.read_csv(filename2)
 
 # Encode categorical attributes to integers
 encoder = LabelEncoder()
@@ -72,7 +78,7 @@ elif prediction_algorithm == "Decision Tree":
 st.title("Customer Churn App")
 
 # Button to show/hide data and description
-df2 = pd.read_csv('Telco-Customer-Churn.csv')
+df2 = pd.read_csv(filename)
 show_datadf2 = st.button("Show Raw Data")
 if show_datadf2:
     st.write("Dataset before cleaning:")
@@ -81,7 +87,7 @@ if show_datadf2:
         show_datadf2 = False
 
 # Button to show/hide data and description
-df3 = pd.read_csv('Telco-Customer-Churn-dataset-cleaned.csv')
+df3 = pd.read_csv(filename2)
 show_datadf3 = st.button("Show Cleaned Data")
 if show_datadf3:
     st.write("Dataset after cleaning:")
